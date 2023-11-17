@@ -1,4 +1,4 @@
-const swaggerRouter = require('./swaggerRouter');
+const swaggerRouter = require('./swagger');
+const authRouter = require('./auth');
 
-
-module.exports = {swaggerRouter};
+module.exports = {swaggerRouter, authRouter};
