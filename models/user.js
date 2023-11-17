@@ -36,6 +36,10 @@ const userSchema = new Schema(
     avatarURL: {
       type: String,
       required: true,
+    },
+    favourite:{
+        type: Array,
+        default: []
     }
   },
   { versionKey: false, timestamps: true }
