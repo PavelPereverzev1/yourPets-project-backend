@@ -1,12 +1,7 @@
 const express = require("express");
-const { validateBody } = require("../../middlewares");
-const petSchema = require("../../schemas/joiPetsSchema");
-const {
-  petList,
-  addPet,
-  deletePet,
-  petInfo,
-} = require("../../controllers/pets");
+const { validateBody } = require("../middlewares");
+const petSchema = require("../schemas/joiPetsSchema");
+const { petList, addPet, deletePet, petInfo } = require("../controllers/pets");
 
 const router = express.Router();
 
