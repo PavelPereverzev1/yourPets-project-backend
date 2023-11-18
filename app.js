@@ -4,9 +4,6 @@ const cors = require('cors');
 require('dotenv').config();
 const {swaggerRouter,authRouter} = require('./routes');
 
-// const contactsRouter = require('./routes/api/contacts');
-// const usersRouter = require('./routes/api/users');
-
 const app = express();
 
 const formatLogger = app.get('env') === 'development' ? 'dev' : 'short';
