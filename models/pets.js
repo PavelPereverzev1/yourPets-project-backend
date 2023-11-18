@@ -49,7 +49,7 @@ const petSchema = new Schema({
   },
 });
 
-petsSchema.post("save", handleMongooseError);
+petSchema.post("save", handleMongooseError);
 
 const Pet = model("pet", petSchema);
 

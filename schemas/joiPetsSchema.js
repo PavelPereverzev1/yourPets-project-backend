@@ -4,9 +4,9 @@ const petSchema = Joi.object({
   name: Joi.string().required().messages({
     "any.required": "Pet name must be provided",
   }),
-  birthday: Joi.date().format("DD-MM-YYYY").messages({
-    "date.format": "Invalid date format (dd-mm-yyyy)",
-  }),
+  // birthday: Joi.date().format("DD-MM-YYYY").messages({
+  //   "date.format": "Invalid date format (dd-mm-yyyy)",
+  // }),
   type: Joi.string().required().messages({
     "any.required": "Type must be provided",
   }),
@@ -22,4 +22,4 @@ const petSchema = Joi.object({
   favorite: Joi.boolean().default(false),
 });
 
-module.exports = petSchema;
+module.exports = {petSchema};
