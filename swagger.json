@@ -11,15 +11,18 @@
   },
   "consumes": ["application/json", "multipart/form-data"],
   "produces": ["application/json"],
-  "servers": [{ "url": "http://localhost:3000" },{ "url": "https://yourpets-project-backend.onrender.com"}],
+  "servers": [
+    { "url": "http://localhost:3000" },
+    { "url": "https://yourpets-project-backend.onrender.com" }
+  ],
   "tags": [
     {
       "name": "Auth",
       "description": "Authorization endpoints"
     },
     {
-       "name":"Users",
-       "description": "User endpoints" 
+      "name": "Users",
+      "description": "User endpoints"
     }
   ],
 
@@ -145,12 +148,48 @@
           }
         }
       }
+    },
+    "/users/current": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get current user",
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized (Invalid access token)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
-    
   },
 
   "components": {
     "schemas": {
+      "User":{
+        "type":"object",
+        "properties": {
+          
+
+        }
+
+      },
       "UnauthorizedError": {
         "type": "object",
         "properties": {
