@@ -1,8 +1,12 @@
 const { Schema, model } = require("mongoose");
 const { handleMongooseError } = require("../helpers");
+const Joi = require("joi").extend(require("@joi/date"));
 
-const dateRegex = /^(0[1-9]|[1-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-\d{4}$/;
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const validateDate = (value) => {
+  const { error } = Joi.date().format("DD-MM-YYYY").validate(value);
+  return !error;
+};
 
 const petSchema = new Schema({
   name: {
@@ -11,7 +15,10 @@ const petSchema = new Schema({
   },
   birthday: {
     type: Date,
-    validate: dateRegex,
+    validate: {
+      validator: validateDate,
+      message: "Invalid date format (dd-mm-yyyy)",
+    },
   },
   type: {
     type: String,
@@ -39,13 +46,13 @@ const petSchema = new Schema({
   discription: {
     type: String,
   },
-  sellInfor: {
+  sellInfo: {
     type: String,
     enum: ["sell", "in good hands", "lost/found"],
   },
   favorite: {
-    type: Boolean,
-    default: false,
+    type: Array,
+    default: [],
   },
 });
 
