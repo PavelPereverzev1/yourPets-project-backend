@@ -8,7 +8,6 @@ const userSchema = new Schema(
     name: {
       type: String,
       required: [true, "Username is required"],
-      unique: true,
     },
     password: {
       type: String,
@@ -22,12 +21,15 @@ const userSchema = new Schema(
     },
     birthday: {
       type: String,
+      default:"",
     },
     phone: {
       type: String,
+      default:"",
     },
     city: {
       type: String,
+      default:"",
     },
     token: {
       type: String,

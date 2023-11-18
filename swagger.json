@@ -16,6 +16,10 @@
     {
       "name": "Auth",
       "description": "Authorization endpoints"
+    },
+    {
+       "name":"Users",
+       "description": "User endpoints" 
     }
   ],
 
@@ -51,7 +55,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RegistrationResponse"
+                  "$ref": "#/components/schemas/BadRequestError"
                 }
               }
             }
@@ -90,7 +94,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RegistrationRequest"
+                  "$ref": "#/components/schemas/RegistrationResponse"
                 }
               }
             }
@@ -142,6 +146,7 @@
         }
       }
     }
+    
   },
 
   "components": {
