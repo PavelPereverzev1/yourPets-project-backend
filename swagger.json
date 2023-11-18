@@ -117,11 +117,59 @@
           }
         }
       }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User logout",
+        "security": [{ "Bearer": [] }],
+
+        "responses": {
+          "204": {
+            "description": "Logout successful",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized (Invalid access token)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
 
   "components": {
     "schemas": {
+      "UnauthorizedError": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Response message for error code 401",
+            "example": "Unauthorized"
+          }
+        }
+      },
+      "LogoutResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Logout successful",
+            "example": "Logout successful"
+          }
+        }
+      },
+      "LogoutRequest": {
+        "type": "object",
+        "description": "Logout request without any content"
+      },
       "LoginError": {
         "type": "object",
         "properties": {
