@@ -160,7 +160,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/UserResponse"
                 }
               }
             }
@@ -191,7 +191,7 @@
           "content": {
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/User"
+                "$ref": "#/components/schemas/UpdateUserRequest"
               }
             }
           }
@@ -203,7 +203,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/UserResponse"
                 }
               }
             }
@@ -235,7 +235,39 @@
 
   "components": {
     "schemas": {
-      "User":{
+      "UpdateUserRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Username",
+            "example": "Boby"
+          },
+          "birthday": {
+            "type": "string",
+            "format": "date",
+            "description": "User's birthday in format YYYY-MM-DD",
+            "example": "2000-01-01"
+          },
+          "phone": {
+            "type": "string",
+            "description": "User's phone number",
+            "example": "+380000000000"
+          },
+          "city": {
+            "type": "string",
+            "description": "User's city",
+            "example": "Kherson"
+          },
+          "avatar": {
+            "type": "string",
+            "description": "URL to user's avatar image",
+            "required": true,
+            "format": "binary"
+          }
+        }
+      },
+      "UserResponse":{
         "type":"object",
         "properties": {
           "_id": {
