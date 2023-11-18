@@ -177,6 +177,59 @@
           }
         }
       }
+    },
+    "/users" : {
+      "patch": {
+        "tags": ["Users"],
+        "consumes": ["multipart/form-data"],
+        "summary": "Update user's data by id",
+        "security": [{ "Bearer": [] }],
+
+        "requestBody": {
+          "description": "User's data object",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "200": {
+            "description": "Sucessful update operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not autorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
 
@@ -185,8 +238,43 @@
       "User":{
         "type":"object",
         "properties": {
-          
-
+          "_id": {
+            "type": "string",
+            "description": "User's Id",
+            "example": "6559154b6ec175bb9e83b5e8"
+          },
+          "name": {
+            "type": "string",
+            "description": "Username",
+            "example": "Boby"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email",
+            "example": "user@example.com"
+          },
+          "phone": {
+            "type": "string",
+            "description": "User's phone number",
+            "example": "+380000000000"
+          },
+          "birthday": {
+            "type": "string",
+            "format": "date",
+            "description": "User's birthday in format YYYY-MM-DD",
+            "example": "1990-01-01"
+          },
+          "city": {
+            "type": "string",
+            "description": "User's city",
+            "example": "Lviv"
+          },
+          "avatarURL": {
+            "type": "string",
+            "description": "The URL to the user's avatar",
+            "example": "www.gravatar.com/avatar/9f947d80dcde0d8bdc7c3bb66e82e6c7"
+          }
         }
 
       },
