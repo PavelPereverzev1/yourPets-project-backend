@@ -15,16 +15,17 @@ const loginSchema = Joi.object({
   password: Joi.string().min(6).required(),
 });
 
-const userUdateSchema = Joi.object({
-  name: Joi.string().min(2).max(16).required().empty(false),
+const userUpdateSchema = Joi.object({
+  name: Joi.string().min(2).max(16).empty(false),
   birthday: Joi.string().regex(dateRegExp),
   phone: Joi.string().regex(phoneRegExp),
   city: Joi.string().min(2).max(30).empty(false),
   avatarURL: Joi.string().uri(),
+  avatarId: Joi.string(),
 })
 
 module.exports = {
   registerSchema,
   loginSchema,
-  userUdateSchema,
+  userUpdateSchema,
 };
