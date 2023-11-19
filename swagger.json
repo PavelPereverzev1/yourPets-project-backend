@@ -23,6 +23,10 @@
     {
       "name": "Users",
       "description": "User endpoints"
+    },
+    {
+      "name": "Notices",
+      "description": "Notices endpoints"
     }
   ],
 
@@ -178,7 +182,7 @@
         }
       }
     },
-    "/users" : {
+    "/users": {
       "patch": {
         "tags": ["Users"],
         "consumes": ["multipart/form-data"],
@@ -230,6 +234,15 @@
           }
         }
       }
+    },
+    "/notices": {
+      "get":{
+        "tags":["Notices"],
+        "summary":"Get notices list",
+        "parameters": [
+
+        ]
+      }
     }
   },
 
@@ -267,8 +280,8 @@
           }
         }
       },
-      "UserResponse":{
-        "type":"object",
+      "UserResponse": {
+        "type": "object",
         "properties": {
           "_id": {
             "type": "string",
@@ -308,7 +321,6 @@
             "example": "www.gravatar.com/avatar/9f947d80dcde0d8bdc7c3bb66e82e6c7"
           }
         }
-
       },
       "UnauthorizedError": {
         "type": "object",
