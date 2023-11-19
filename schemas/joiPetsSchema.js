@@ -10,7 +10,8 @@ const petSchema = Joi.object({
   type: Joi.string().required().messages({
     "any.required": "Type must be provided",
   }),
-  avatarUrl: Joi.string().allow(null),
+  photoId: Joi.string(),
+  petPhoto: Joi.string().allow(null),
   sex: Joi.string().valid("male", "female"),
   owner: Joi.string(),
   ownerEmail: Joi.string().email().messages({
@@ -18,8 +19,6 @@ const petSchema = Joi.object({
   }),
   ownerPhone: Joi.string(),
   discription: Joi.string(),
-  sellInfo: Joi.string().valid("sell", "in good hands", "lost/found"),
-  favorite: Joi.array().items(Joi.string()),
 });
 
 module.exports = petSchema;

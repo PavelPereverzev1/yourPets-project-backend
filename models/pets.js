@@ -24,7 +24,10 @@ const petSchema = new Schema({
     type: String,
     required: [true, "Type must be provided"],
   },
-  avatarUrl: {
+  photoId: {
+    type: String,
+  },
+  petPhoto: {
     type: String,
     default: null,
   },
@@ -45,14 +48,6 @@ const petSchema = new Schema({
   },
   discription: {
     type: String,
-  },
-  sellInfo: {
-    type: String,
-    enum: ["sell", "in good hands", "lost/found"],
-  },
-  favorite: {
-    type: Array,
-    default: [],
   },
 });
 
