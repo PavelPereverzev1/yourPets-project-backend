@@ -2,7 +2,8 @@ const HttpError = require('./HttpError');
 const ctrlWrapper = require('./ctrlWrapper');
 const handleMongooseError = require('./handleMongooseError.js');
 const generateJWT = require('./generateJWT.js');
-const upload = require('./upload');
+const upload = require('./uploadTmp.js');
+const resizeImage = require('./resizeImage.js');
 
 module.exports = {
     HttpError,
@@ -10,4 +11,5 @@ module.exports = {
     handleMongooseError,
     generateJWT,
     upload,
+    resizeImage,
   };
