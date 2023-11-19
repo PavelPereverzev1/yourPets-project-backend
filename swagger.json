@@ -11,11 +11,18 @@
   },
   "consumes": ["application/json", "multipart/form-data"],
   "produces": ["application/json"],
-  "servers": [{ "url": "http://localhost:3000" },{ "url": "https://yourpets-project-backend.onrender.com"}],
+  "servers": [
+    { "url": "http://localhost:3000" },
+    { "url": "https://yourpets-project-backend.onrender.com" }
+  ],
   "tags": [
     {
       "name": "Auth",
       "description": "Authorization endpoints"
+    },
+    {
+      "name": "Users",
+      "description": "User endpoints"
     }
   ],
 
@@ -51,7 +58,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RegistrationResponse"
+                  "$ref": "#/components/schemas/BadRequestError"
                 }
               }
             }
@@ -90,7 +97,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RegistrationRequest"
+                  "$ref": "#/components/schemas/RegistrationResponse"
                 }
               }
             }
@@ -141,11 +148,168 @@
           }
         }
       }
+    },
+    "/users/current": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get current user",
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized (Invalid access token)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users" : {
+      "patch": {
+        "tags": ["Users"],
+        "consumes": ["multipart/form-data"],
+        "summary": "Update user's data by id",
+        "security": [{ "Bearer": [] }],
+
+        "requestBody": {
+          "description": "User's data object",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserRequest"
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "200": {
+            "description": "Sucessful update operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not autorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
 
   "components": {
     "schemas": {
+      "UpdateUserRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Username",
+            "example": "Boby"
+          },
+          "birthday": {
+            "type": "string",
+            "format": "date",
+            "description": "User's birthday in format YYYY-MM-DD",
+            "example": "2000-01-01"
+          },
+          "phone": {
+            "type": "string",
+            "description": "User's phone number",
+            "example": "+380000000000"
+          },
+          "city": {
+            "type": "string",
+            "description": "User's city",
+            "example": "Kherson"
+          },
+          "avatar": {
+            "type": "string",
+            "description": "URL to user's avatar image",
+            "required": true,
+            "format": "binary"
+          }
+        }
+      },
+      "UserResponse":{
+        "type":"object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "User's Id",
+            "example": "6559154b6ec175bb9e83b5e8"
+          },
+          "name": {
+            "type": "string",
+            "description": "Username",
+            "example": "Boby"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email",
+            "example": "user@example.com"
+          },
+          "phone": {
+            "type": "string",
+            "description": "User's phone number",
+            "example": "+380000000000"
+          },
+          "birthday": {
+            "type": "string",
+            "format": "date",
+            "description": "User's birthday in format YYYY-MM-DD",
+            "example": "1990-01-01"
+          },
+          "city": {
+            "type": "string",
+            "description": "User's city",
+            "example": "Lviv"
+          },
+          "avatarURL": {
+            "type": "string",
+            "description": "The URL to the user's avatar",
+            "example": "www.gravatar.com/avatar/9f947d80dcde0d8bdc7c3bb66e82e6c7"
+          }
+        }
+
+      },
       "UnauthorizedError": {
         "type": "object",
         "properties": {
