@@ -1,4 +1,4 @@
-const getCurrent = (req, res) => {
+const getCurrent =async (req, res) => {
     const {user} = req;
     
     res.json({
