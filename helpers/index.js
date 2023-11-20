@@ -3,6 +3,7 @@ const ctrlWrapper = require('./ctrlWrapper');
 const handleMongooseError = require('./handleMongooseError.js');
 const generateJWT = require('./generateJWT.js');
 const resizeImage = require('./resizeImage.js');
+const noticeFilter = require('./noticesFilter.js');
 
 module.exports = {
     HttpError,
@@ -10,4 +11,5 @@ module.exports = {
     handleMongooseError,
     generateJWT,
     resizeImage,
+    noticeFilter,
   };

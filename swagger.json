@@ -236,18 +236,119 @@
       }
     },
     "/notices": {
-      "get":{
-        "tags":["Notices"],
-        "summary":"Get notices list",
+      "get": {
+        "tags": ["Notices"],
+        "summary": "Get notices list",
         "parameters": [
-
-        ]
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Page number",
+            "example": "2"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Number of items per page",
+            "example": "12"
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Category of notices",
+            "example": "sell, lost-found, in-good-hands"
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search for notices by keyword",
+            "example": "Пес Барбос",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AllNoticesListResponse"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
 
   "components": {
     "schemas": {
+      "AllNoticesListResponse": {
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "description": "Total notices",
+            "example": 1
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Notice's ID",
+                  "example": "02aa6jyt15cs5e00020qw24d"
+                },
+                "noticeType": {
+                  "type": "string",
+                  "description": "Notice's type",
+                  "example": "in good hands"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Notice's title",
+                  "example": "Cute kitten looking for a home"
+                },
+                "sex": {
+                  "type": "string",
+                  "description": "Pet's sex",
+                  "example": "male"
+                },
+                "location": {
+                  "type": "string",
+                  "description": "Notice's location",
+                  "example": "Kiev"
+                },
+                "photoURL": {
+                  "type": "string",
+                  "description": "Pet's photo in notice",
+                  "example": "https://res.cloudinary.com/doe8sk18b/image/upload/v1690028176/wwesmackd0wnq24wwa25.jpg"
+                },
+                "age": {
+                  "type": "string",
+                  "description": "Pet age",
+                  "example": "4 years"
+                }
+              }
+            }
+          }
+        }
+      },
       "UpdateUserRequest": {
         "type": "object",
         "properties": {
