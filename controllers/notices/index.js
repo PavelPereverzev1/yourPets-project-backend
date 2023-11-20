@@ -1,5 +1,8 @@
-const { ctrlWrapper } = require('../../helpers');
-const getNoticeList = require("./getNoticeList");
+const { ctrlWrapper } = require("../../helpers");
+const getNoticesList = require("./getNoticeList");
+const addNotice = require("./addNotice");
 
-
-module.exports = {getNoticeList:ctrlWrapper(getNoticeList)}
+module.exports = {
+  getNoticesList: ctrlWrapper(getNoticesList),
+  addNotice: ctrlWrapper(addNotice),
+};

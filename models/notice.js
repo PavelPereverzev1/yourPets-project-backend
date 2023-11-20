@@ -1,11 +1,12 @@
 const { Schema, Types, model } = require("mongoose");
 const handleMongooseError  = require("../helpers/handleMongooseError");
+const CATEGORIES = require("../constants/noticeCategories");
 
 const noticeSchema = new Schema(
   {
     noticeType: {
       type: String,
-      enum: ["sell", "lost-found", "in-good-hands"],
+      enum: CATEGORIES,
       required: true,
     },
     title: {
