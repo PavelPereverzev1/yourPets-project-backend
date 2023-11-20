@@ -5,13 +5,13 @@ const phoneRegExp = /^\+380\d{9}$/;
 const dateRegExp = /^\d{4}-\d{2}-\d{2}$/;
 
 const registerSchema = Joi.object({
-  name: Joi.string().required(),
-  email: Joi.string().pattern(emailRegExp).required(),
+  name: Joi.string().required().empty(false),
+  email: Joi.string().pattern(emailRegExp).required().empty(false),
   password: Joi.string().min(6).required(),
 });
 
 const loginSchema = Joi.object({
-  email: Joi.string().pattern(emailRegExp).required(),
+  email: Joi.string().pattern(emailRegExp).required().empty(false),
   password: Joi.string().min(6).required(),
 });
 
@@ -20,7 +20,7 @@ const userUpdateSchema = Joi.object({
   birthday: Joi.string().regex(dateRegExp),
   phone: Joi.string().regex(phoneRegExp),
   city: Joi.string().min(2).max(30).empty(false),
-  avatarURL: Joi.string().uri(),
+  avatarURL: Joi.string().uri().empty(false),
   avatarId: Joi.string(),
 })
 

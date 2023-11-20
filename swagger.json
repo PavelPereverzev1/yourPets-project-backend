@@ -186,7 +186,7 @@
       "patch": {
         "tags": ["Users"],
         "consumes": ["multipart/form-data"],
-        "summary": "Update user's data by id",
+        "summary": "Update user's data",
         "security": [{ "Bearer": [] }],
 
         "requestBody": {
@@ -290,12 +290,139 @@
             }
           }
         }
+      },
+      "post":{
+        "tags": ["Notices"],  
+        "summary": "Add ",
+        "security": [{"Bearer":[]}],
+
+        "requestBody":{
+          "description": "Notice's pet data object",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/AddNoticeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation of adding a notice",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddNoticeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BadRequestError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Headers of user requests are missing a token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
 
   "components": {
     "schemas": {
+      "AddNoticeResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Successful operation",
+            "example": "Your notice has been added"
+          }
+        }
+      },
+      "AddNoticeRequest": {
+        "type": "object",
+        "required": [
+          "noticeType",
+          "title",
+          "name",
+          "birthday",
+          "petType",
+          "sex",
+          "location",
+          "price",
+          "comments",
+          "photo"
+        ],
+        "properties": {
+          "noticeType": {
+            "type": "string",
+            "description": "Notice's type",
+            "example": "sell"
+          },
+          "title": {
+            "type": "string",
+            "description": "Notice's title",
+            "example": "Cute dog looking for a home"
+          },
+          "name": {
+            "type": "string",
+            "description": "Pet's name",
+            "example": "Rich"
+          },
+          "birthday": {
+            "type": "string",
+            "description": "Pet's birthday in format YYYY-MM-DD",
+            "example": "2020-09-21"
+          },
+          "petType": {
+            "type": "string",
+            "description": "Pet's type",
+            "example": "Pomeranian"
+          },
+          "sex": {
+            "type": "string",
+            "description": "Pet's sex",
+            "example": "male"
+          },
+          "location": {
+            "type": "string",
+            "description": "Notice's location",
+            "example": "Lviv"
+          },
+          "price": {
+            "type": "integer",
+            "description": "Notice's price (Available only if type of notice equal sell)",
+            "example": 12500
+          },
+          "comments": {
+            "type": "string",
+            "description": "Notice's comment",
+            "example": "Rich would be the perfect addition to an active family that loves to play and go on walks. I bet he would love having a doggy playmate too!"
+          },
+          "photo": {
+            "type": "string",
+            "description": "URL to user's avatar image",
+            "required": true,
+            "format": "binary"
+          }
+        }
+        },
       "AllNoticesListResponse": {
         "type": "object",
         "properties": {

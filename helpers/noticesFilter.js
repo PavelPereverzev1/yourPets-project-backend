@@ -1,13 +1,12 @@
 const Notice = require("../models/notice.js");
 const dateFns = require("date-fns");
-
-const possibleCategories = ["sell", "lost-found", "in-good-hands"];
+const CATEGORIES = require("../constants/noticeCategories.js")
 
 const noticeFilter = async (query) => {
-  const { category = "sell", search } = query;
+  const {category="sell", search } = query;
   let noticesList = [];
-  if (possibleCategories.includes(category)) {
-    noticesList = await Notice.find({ category }).sort("-createdAt").lean();
+  if (CATEGORIES.includes(category)) {
+    noticesList = await Notice.find({noticeType:category}).sort("-createdAt").lean();
   }
   if (search) {
     noticesList = noticesList.filter(

@@ -5,5 +5,4 @@ const userRouter = require('./users');
 const noticeRouter = require('./notices');
 
 module.exports = {swaggerRouter, authRouter, petRouter, userRouter, noticeRouter};
-// module.exports = {swaggerRouter, authRouter, petRouter, userRouter};
 
