@@ -1,12 +1,14 @@
+const mongoose = require("mongoose");
 const Pet = require("../../models/pets");
 
 const petsList = async (req, res, next) => {
-  const page = parseInt(req.query.page) || 1;
-  const limit = parseInt(req.query.limit) || 9;
-
-  const pets = await Pet.find()
-    .skip((page - 1) * limit)
-    .limit(limit);
+  const userId = mongoose.Types.ObjectId(req.user._id);
+  const pets = await Pet.find({
+    owner: userId,
+  });
+  if (pets.length === 0) {
+    res.status(404).json({ message: "No pets" });
+  }
   res.json(pets);
 };
 
