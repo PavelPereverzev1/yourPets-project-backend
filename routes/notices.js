@@ -20,6 +20,7 @@ router.post(
   validateBody(schemas.addNoticeSchema),
   ctrl.addNotice
 );
+router.get("/own", authenticate, ctrl.getOwnNotices)
 
 router.get("/:noticeId", ctrl.getNoticeById);
 
