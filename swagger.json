@@ -284,7 +284,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AllNoticesListResponse"
+                  "$ref": "#/components/schemas/NoticesListResponse"
                 }
               }
             }
@@ -295,7 +295,6 @@
         "tags": ["Notices"],
         "summary": "Add ",
         "security": [{ "Bearer": [] }],
-
         "requestBody": {
           "description": "Notice's pet data object",
           "required": true,
@@ -376,6 +375,56 @@
             }
           }
         }
+      }
+    },
+    "notices/own":{
+      "get": {
+        "tags":["Notices"],
+        "summary":"Get own user notices",
+        "security":[{"Bearer": []}],
+        "parameters":[
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Page number",
+            "example": "2"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Number of items per page",
+            "example": "12"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoticesListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Headers of user requests are missing a token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          }
+        }
+
       }
     }
   },
@@ -563,7 +612,7 @@
           }
         }
       },
-      "AllNoticesListResponse": {
+      "NoticesListResponse": {
         "type": "object",
         "properties": {
           "total": {
@@ -636,6 +685,12 @@
             "type": "string",
             "description": "Username",
             "example": "Boby"
+          },
+          "email":{
+            "type": "string",
+            "description": "User's email",
+            "format": "email",
+            "example": "user@example.com"
           },
           "birthday": {
             "type": "string",
