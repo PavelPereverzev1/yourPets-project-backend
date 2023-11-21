@@ -10,7 +10,7 @@ const getNoticeById = async (req , res) => {
     }
     const { email, phone } = await User.findById(result.owner)
 
-    res.json({
+    res.status(200).json({
         notice: {
           _id: result._id,
           noticeType: result.noticeType,
