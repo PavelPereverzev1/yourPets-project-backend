@@ -7,7 +7,7 @@ const getNoticesList = async (req, res) => {
     const skip = (page - 1) * limit;
     const noticesPage = noticesList.slice(skip, skip + limit);
   
-    res.json({
+    res.status(200).json({
       data: noticesPage,
       total: noticesList.length,
     });

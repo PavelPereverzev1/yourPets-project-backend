@@ -22,5 +22,6 @@ router.post(
 );
 
 router.get("/:noticeId", ctrl.getNoticeById);
+router.get("/own", authenticate, ctrl.getOwnNotices )
 
 module.exports = router;
