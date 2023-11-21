@@ -29,6 +29,8 @@ const noticeFilter = async (query) => {
       photoURL: notice.photoURL,
       age,
       category: notice.category,
+      favorite: notice.favorite,
+      owner: notice.owner,
     };
   });
   return noticesList;

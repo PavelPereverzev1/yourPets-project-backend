@@ -291,12 +291,12 @@
           }
         }
       },
-      "post":{
-        "tags": ["Notices"],  
+      "post": {
+        "tags": ["Notices"],
         "summary": "Add ",
-        "security": [{"Bearer":[]}],
+        "security": [{ "Bearer": [] }],
 
-        "requestBody":{
+        "requestBody": {
           "description": "Notice's pet data object",
           "required": true,
           "content": {
@@ -340,11 +340,151 @@
           }
         }
       }
+    },
+    "/notices/{noticeId}": {
+      "get": {
+        "tags": ["Notices"],
+        "summary": "Get notice By ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "noticeId",
+            "type": "string",
+            "required": true,
+            "description": "Notice ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetNoticeByIdResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Requested resource not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFound"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
 
   "components": {
     "schemas": {
+      "NotFound": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Response message for error code 404",
+            "example": "Not found"
+          }
+        }
+      },
+      "GetNoticeByIdResponse": {
+        "type": "object",
+        "properties": {
+          "notice": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "description": "Pet's id",
+                "example": "02aa6jyt15cs5e00020qw24d"
+              },
+              "noticeType": {
+                "type": "string",
+                "description": "Notice's type",
+                "example": "sell"
+              },
+              "title": {
+                "type": "string",
+                "description": "Notice's title",
+                "example": "Cute dog looking for a home"
+              },
+              "name": {
+                "type": "string",
+                "description": "Pet's name",
+                "example": "Barsik"
+              },
+              "birthday": {
+                "type": "string",
+                "description": "Pet's birthday in format YYYY-MM-DD",
+                "example": "2021-12-12"
+              },
+              "petType": {
+                "type": "string",
+                "description": "Pet's type",
+                "example": "Pomeranian"
+              },
+              "sex": {
+                "type": "string",
+                "description": "Pet's sex",
+                "example": "male"
+              },
+              "location": {
+                "type": "string",
+                "description": "Notice's location",
+                "example": "Lviv"
+              },
+              "price": {
+                "type": "integer",
+                "description": "Notice's price (Available only if type of notice equal sell)",
+                "example": 1250
+              },
+              "comments": {
+                "type": "string",
+                "description": "Notice's comment",
+                "example": "Rich would be the perfect addition to an active family that loves to play and go on walks. I bet he would love having a doggy playmate too!"
+              },
+              "photoURL": {
+                "type": "string",
+                "description": "Pet's photo in notice",
+                "example": "https://res.cloudinary.com/doe8sk18b/image/upload/v1690028176/wwesmackd0wnq24wwap0e.jpg"
+              },
+              "favorite": {
+                "type": "integer",
+                "description": "Number of users who have favorited this notification",
+                "example": "1"
+              },
+              "favourites": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "User's Id",
+                  "example": "6559154b6ec175bb9e83b5e8"
+                }
+              },
+              "owner": {
+                "type": "string",
+                "description": "Owner's ID",
+                "example": "6559154b6ec175bb9e83b5e8"
+              },
+              "ownerEmail": {
+                "type": "string",
+                "description": "Owner's email",
+                "example": "testswag@example.com"
+              },
+              "ownerPhone": {
+                "type": "string",
+                "description": "Owner's phone",
+                "example": "+380631234567"
+              }
+            }
+          }
+        }
+      },
       "AddNoticeResponse": {
         "type": "object",
         "properties": {
@@ -422,7 +562,7 @@
             "format": "binary"
           }
         }
-        },
+      },
       "AllNoticesListResponse": {
         "type": "object",
         "properties": {
@@ -470,6 +610,19 @@
                   "type": "string",
                   "description": "Pet age",
                   "example": "4 years"
+                },
+                "favourites": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "User's Id",
+                    "example": "6559154b6ec175bb9e83b5e8"
+                  }
+                },
+                "owner": {
+                  "type": "string",
+                  "description": "Owner's ID",
+                  "example": "6559154b6ec175bb9e83b5e8"
                 }
               }
             }

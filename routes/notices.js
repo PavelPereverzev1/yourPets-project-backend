@@ -21,4 +21,6 @@ router.post(
   ctrl.addNotice
 );
 
+router.get("/:noticeId", ctrl.getNoticeById);
+
 module.exports = router;
