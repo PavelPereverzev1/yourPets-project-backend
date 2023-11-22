@@ -11,7 +11,6 @@ const {
 const router = express.Router();
 
 router.get("/", ctrl.getNoticesList);
-
 router.post(
   "/",
   authenticate,
@@ -20,9 +19,8 @@ router.post(
   validateBody(schemas.addNoticeSchema),
   ctrl.addNotice
 );
-router.get("/own", authenticate, ctrl.getOwnNotices)
-
+router.get("/own", authenticate, ctrl.getOwnNotices);
 router.get("/:noticeId", ctrl.getNoticeById);
-router.get("/own", authenticate, ctrl.getOwnNotices )
+router.delete("/:noticeId",authenticate, ctrl.deleteOwnNotice);
 
 module.exports = router;

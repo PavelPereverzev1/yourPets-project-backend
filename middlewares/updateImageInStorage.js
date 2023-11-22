@@ -1,7 +1,7 @@
 const {
   uploadCloudinary,
   deleteFromCloudinary,
-} = require("../helpers/cloudinary");
+} = require("../helpers");
 const fs = require("fs/promises");
 
 const updateImage = async (req, res, next) => {

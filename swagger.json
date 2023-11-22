@@ -72,7 +72,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/EmailInUsetError"
+                  "$ref": "#/components/schemas/EmailInUseError"
                 }
               }
             }
@@ -375,14 +375,60 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": ["Notices"],
+        "summary": "Delete notce by Id",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "noticeId",
+            "required": true,
+            "type": "string",
+            "description": "Notice ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete own notice by Id",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteNoticeResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Headers of user requests are missing a token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Requested resource not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFound"
+                }
+              }
+            }
+          }
+        }
       }
     },
-    "notices/own":{
+    "notices/own": {
       "get": {
-        "tags":["Notices"],
-        "summary":"Get own user notices",
-        "security":[{"Bearer": []}],
-        "parameters":[
+        "tags": ["Notices"],
+        "summary": "Get own user notices",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
           {
             "in": "query",
             "name": "page",
@@ -424,13 +470,21 @@
             }
           }
         }
-
       }
     }
   },
 
   "components": {
     "schemas": {
+      "DeleteNoticeResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Delete successfully"
+          }
+        }
+      },
       "NotFound": {
         "type": "object",
         "properties": {
@@ -686,7 +740,7 @@
             "description": "Username",
             "example": "Boby"
           },
-          "email":{
+          "email": {
             "type": "string",
             "description": "User's email",
             "format": "email",
@@ -865,7 +919,7 @@
           }
         }
       },
-      "EmailInUsetError": {
+      "EmailInUseError": {
         "type": "object",
         "properties": {
           "message": {
