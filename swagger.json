@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "version": "0.0.1",
-    "title": "Swagger test",
+    "title": "Your pets",
     "description": "Showing off swagger-ui-express",
     "license": {
       "name": "MIT",
@@ -471,6 +471,64 @@
           }
         }
       }
+    },
+    "notices/favorite": {
+      "get": {
+        "tags": ["Notices"],
+        "summary": "Get favorite notices",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Page number",
+            "example": "2"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Number of items per page",
+            "example": "12"
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search for notices by keyword",
+            "example": "Пес Барбос",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoticesListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized (Invalid access token)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
 
@@ -809,6 +867,14 @@
             "type": "string",
             "description": "The URL to the user's avatar",
             "example": "www.gravatar.com/avatar/9f947d80dcde0d8bdc7c3bb66e82e6c7"
+          },
+          "favourites": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Cards's Id",
+              "example": "6559154b6ec175bb9e83b5e8"
+            }
           }
         }
       },

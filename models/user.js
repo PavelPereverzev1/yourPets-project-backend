@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const  handleMongooseError  = require("../helpers/handleMongooseError");
+const handleMongooseError = require("../helpers/handleMongooseError");
 
 const emailRegExp = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -21,15 +21,15 @@ const userSchema = new Schema(
     },
     birthday: {
       type: String,
-      default:"",
+      default: "",
     },
     phone: {
       type: String,
-      default:"",
+      default: "",
     },
     city: {
       type: String,
-      default:"",
+      default: "",
     },
     token: {
       type: String,
@@ -43,10 +43,10 @@ const userSchema = new Schema(
       type: String,
       default: null,
     },
-    favourite:{
-        type: Array,
-        default: []
-    }
+    favorites: {
+      type: Array,
+      default: [],
+    },
   },
   { versionKey: false, timestamps: true }
 );

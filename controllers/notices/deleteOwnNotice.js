@@ -10,7 +10,7 @@ const deleteOwnNotice = async (req, res) => {
         throw HttpError(404, 'Not found');
     }
     await deleteFromCloudinary(result.photoId);
-
+// TODO удаление из избранного
 res.status(200).json({
     message:"Successfully deleted"
 });

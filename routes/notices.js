@@ -20,7 +20,8 @@ router.post(
   ctrl.addNotice
 );
 router.get("/own", authenticate, ctrl.getOwnNotices);
+router.get("/favorite", authenticate, ctrl.getFavorites);
 router.get("/:noticeId", ctrl.getNoticeById);
-router.delete("/:noticeId",authenticate, ctrl.deleteOwnNotice);
+router.delete("/:noticeId", authenticate, ctrl.deleteOwnNotice);
 
 module.exports = router;
