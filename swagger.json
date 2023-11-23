@@ -27,6 +27,10 @@
     {
       "name": "Notices",
       "description": "Notices endpoints"
+    },
+    {
+      "name": "Pets",
+      "description": "Pets endpoints"
     }
   ],
 
@@ -575,6 +579,51 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": ["Notices"],
+        "summary": "Delete notice from favorites",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "noticeId",
+            "required": true,
+            "type": "string",
+            "description": "Notice ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteNoticeResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized (Invalid access token)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Requested resource not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFound"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -729,7 +778,7 @@
         "properties": {
           "noticeType": {
             "type": "string",
-            "description": "Notice's type",
+            "description": "one of: sell, lost-found, in-god-hands",
             "example": "sell"
           },
           "title": {
@@ -1052,7 +1101,7 @@
         }
       }
     },
-    "securitySchemas": {
+    "securitySchemes": {
       "Bearer": {
         "type": "http",
         "scheme": "bearer",

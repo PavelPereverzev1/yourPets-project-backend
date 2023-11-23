@@ -22,6 +22,7 @@ router.post(
 router.get("/own", authenticate, ctrl.getOwnNotices);
 router.get("/favorite", authenticate, ctrl.getFavorites);
 router.patch("/favorite/:noticeId", authenticate, ctrl.addToFavorites);
+router.delete("/favorite/:noticeId", authenticate, ctrl.deleteFromFavorites);
 router.get("/:noticeId", ctrl.getNoticeById);
 router.delete("/:noticeId", authenticate, ctrl.deleteOwnNotice);
 
