@@ -200,7 +200,6 @@
             }
           }
         },
-
         "responses": {
           "200": {
             "description": "Sucessful update operation",
@@ -529,11 +528,68 @@
           }
         }
       }
+    },
+    "notices/favorite/{noticeId}": {
+      "patch": {
+        "tags": ["Notices"],
+        "summary": "Add notice to favorites",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "noticeId",
+            "required": true,
+            "type": "string",
+            "description": "Notice ID"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successfuly added to favorites",
+            "content": {
+              "aplication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddNoticeToFavorites"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized (Invalid access token)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Requested resource not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFound"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
 
   "components": {
     "schemas": {
+      "AddNoticeToFavoriteResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Success"
+          }
+        }
+      },
       "DeleteNoticeResponse": {
         "type": "object",
         "properties": {
@@ -996,7 +1052,7 @@
         }
       }
     },
-    "securitySchemes": {
+    "securitySchemas": {
       "Bearer": {
         "type": "http",
         "scheme": "bearer",

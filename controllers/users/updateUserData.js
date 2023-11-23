@@ -1,13 +1,12 @@
-
 const updateUserData = async (req, res) => {
-  const { user } = req
- console.log(req.body);
+  const { user } = req;
+  console.log(req.body);
   Object.keys(req.body).forEach((key) => {
-    user[key] = req.body[key]
-  })
+    user[key] = req.body[key];
+  });
 
-  await user.save()
-  
+  await user.save();
+
   res.status(200).json({
     user: {
       _id: user._id,
@@ -17,8 +16,8 @@ const updateUserData = async (req, res) => {
       birthday: user.birthday,
       city: user.city,
       avatarURL: user.avatarURL,
-    }
-  })
+    },
+  });
 };
 
 module.exports = updateUserData;
