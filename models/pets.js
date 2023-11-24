@@ -25,10 +25,6 @@ const petSchema = new Schema(
       type: String,
       required: [true, "Type must be provided"],
     },
-    sex: {
-      type: String,
-      enum: ["male", "female"],
-    },
     photoURL: {
       type: String,
     },

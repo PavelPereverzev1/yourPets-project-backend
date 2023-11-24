@@ -1243,11 +1243,6 @@
             "description": "Pet's birthday in format DD-MM-YYYY",
             "example": "15-05-2017"
           },
-          "sex": {
-            "type": "string",
-            "description": "Pet's sex",
-            "example": "male"
-          },
           "type": {
             "type": "string",
             "description": "Pet's type (e.g., Persian cat, Basenji, Pomeranian, Pug)",
