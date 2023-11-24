@@ -9,10 +9,7 @@ const addNoticeSchema = Joi.object({
   name: Joi.string().min(3).required().empty(false),
   birthday: Joi.string().regex(dateRegExp).required().empty(false),
   petType: Joi.string().min(3).required().empty(false),
-  sex: Joi.string()
-    .valid("male", "female")
-    .required()
-    .empty(false),
+  sex: Joi.string().valid("male", "female").required().empty(false),
   location: Joi.string().min(3).required().empty(false),
   price: Joi.number(),
   comments: Joi.string().min(3).required(),
