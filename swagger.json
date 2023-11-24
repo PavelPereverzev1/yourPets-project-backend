@@ -665,7 +665,7 @@
           "content": {
             "multipart/form-data": {
               "schema": {
-                "ref": "#/components/schemas/AddPetRequest"
+                "$ref": "#/components/schemas/AddPetRequest"
               }
             }
           }
@@ -1256,7 +1256,7 @@
           },
           "comments": {
             "type": "string",
-            "description": "Notice's comment",
+            "description": "Pet's comment",
             "example": "Rich would be the perfect addition to an active family that loves to play and go on walks. I bet he would love having a doggy playmate too!"
           }
         }
