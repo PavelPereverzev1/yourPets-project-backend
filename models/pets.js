@@ -2,54 +2,47 @@ const { Schema, model } = require("mongoose");
 const { handleMongooseError } = require("../helpers");
 const Joi = require("joi").extend(require("@joi/date"));
 
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const validateDate = (value) => {
   const { error } = Joi.date().format("DD-MM-YYYY").validate(value);
   return !error;
 };
 
-const petSchema = new Schema({
-  name: {
-    type: String,
-    required: [true, "Pet name must be provided"],
-  },
-  birthday: {
-    type: Date,
-    validate: {
-      validator: validateDate,
-      message: "Invalid date format (dd-mm-yyyy)",
+const petSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: [true, "Pet name must be provided"],
+    },
+    birthday: {
+      type: Date,
+      validate: {
+        validator: validateDate,
+        message: "Invalid date format (dd-mm-yyyy)",
+      },
+    },
+    type: {
+      type: String,
+      required: [true, "Type must be provided"],
+    },
+    sex: {
+      type: String,
+      enum: ["male", "female"],
+    },
+    photoURL: {
+      type: String,
+    },
+    photoId: {
+      type: String,
+      default: null,
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
     },
   },
-  type: {
-    type: String,
-    required: [true, "Type must be provided"],
-  },
-  photoId: {
-    type: String,
-  },
-  petPhoto: {
-    type: String,
-    default: null,
-  },
-  sex: {
-    type: String,
-    enum: ["male", "female"],
-  },
-  owner: {
-    type: Schema.Types.ObjectId,
-    ref: "user",
-  },
-  ownerEmail: {
-    type: String,
-    validate: emailRegex,
-  },
-  ownerPhone: {
-    type: String,
-  },
-  discription: {
-    type: String,
-  },
-});
+  { versionKey: false, timestamps: true }
+);
 
 petSchema.post("save", handleMongooseError);
 
