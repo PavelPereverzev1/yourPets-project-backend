@@ -10,8 +10,7 @@ const petSchema = Joi.object({
   type: Joi.string().required().messages({
     "any.required": "Type must be provided",
   }),
-  // sex: Joi.string().valid("male", "female").required(),
-  comments: Joi.string(),
+  comments: Joi.string().empty(""),
   photoId: Joi.string(),
   photoURL: Joi.string().required(),
   owner: Joi.string(),

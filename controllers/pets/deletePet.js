@@ -1,5 +1,5 @@
 const Pet = require("../../models/pets");
-const { HttpError } = require("../../helpers");
+const { HttpError, deleteFromCloudinary } = require("../../helpers");
 
 const deletePet = async (req, res, next) => {
   const id = req.params.id;
@@ -8,6 +8,8 @@ const deletePet = async (req, res, next) => {
   if (!result) {
     throw HttpError(404, "Not found");
   }
+  await deleteFromCloudinary(result.photoId);
+
   res.status(200).json({
     message: "Pet deleted",
   });
