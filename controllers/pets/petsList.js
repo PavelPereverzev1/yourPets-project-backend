@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Pet = require("../../models/pets");
+// const { HttpError } = require("../../helpers");
 
 const petsList = async (req, res, next) => {
   const userId = new mongoose.Types.ObjectId(req.user._id);
@@ -7,9 +8,10 @@ const petsList = async (req, res, next) => {
     owner: userId,
   });
 
-  if (pets.length === 0) {
-    return res.status(404).json({ message: "No pets" });
-  }
+  // if (!pets) {
+  //   throw HttpError(404, "Not found");
+  // }
+
   res.json(pets);
 };
 

@@ -1,24 +1,20 @@
-const Joi = require("joi").extend(require("@joi/date"));
+const Joi = require("joi");
+
+const dateRegExp = /^\d{2}-\d{2}-\d{4}$/;
 
 const petSchema = Joi.object({
   name: Joi.string().required().messages({
     "any.required": "Pet name must be provided",
   }),
-  birthday: Joi.date().format("DD-MM-YYYY").messages({
-    "date.format": "Invalid date format (dd-mm-yyyy)",
-  }),
+  birthday: Joi.string().regex(dateRegExp).required().empty(false),
   type: Joi.string().required().messages({
     "any.required": "Type must be provided",
   }),
+  sex: Joi.string().valid("male", "female").required(),
+  comments: Joi.string(),
   photoId: Joi.string(),
-  petPhoto: Joi.string().allow(null),
-  sex: Joi.string().valid("male", "female"),
+  photoURL: Joi.string().required(),
   owner: Joi.string(),
-  ownerEmail: Joi.string().email().messages({
-    "string.email": "Invalid email address",
-  }),
-  ownerPhone: Joi.string(),
-  discription: Joi.string(),
 });
 
 module.exports = petSchema;
