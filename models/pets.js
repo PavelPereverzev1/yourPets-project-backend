@@ -25,6 +25,9 @@ const petSchema = new Schema(
       type: String,
       required: [true, "Type must be provided"],
     },
+    comments: {
+      type: String,
+    },
     photoURL: {
       type: String,
     },
