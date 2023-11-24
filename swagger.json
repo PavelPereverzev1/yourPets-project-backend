@@ -778,7 +778,7 @@
         "properties": {
           "noticeType": {
             "type": "string",
-            "description": "one of: sell, lost-found, in-god-hands",
+            "description": "one of: sell, lost-found, in-good-hands",
             "example": "sell"
           },
           "title": {
