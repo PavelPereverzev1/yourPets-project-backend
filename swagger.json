@@ -445,6 +445,16 @@
         "parameters": [
           {
             "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search for notices by keyword",
+            "example": "Cute dog",
+            "required": false
+          },
+          {
+            "in": "query",
             "name": "page",
             "schema": {
               "type": "integer"
@@ -1311,7 +1321,7 @@
       },
       "AddPetRequest": {
         "type": "object",
-        "required": ["name", "birthday", "type", "sex", "photo"],
+        "required": ["name", "birthday", "petType", "sex", "photo"],
         "properties": {
           "name": {
             "type": "string",
