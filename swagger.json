@@ -31,6 +31,10 @@
     {
       "name": "Pets",
       "description": "Pets endpoints"
+    },
+    {
+      "name": "News",
+      "description": "News endpoints"
     }
   ],
 
@@ -250,6 +254,7 @@
               "type": "integer"
             },
             "description": "Page number",
+            "required": false,
             "example": "2"
           },
           {
@@ -259,6 +264,7 @@
               "type": "integer"
             },
             "description": "Number of items per page",
+            "required": false,
             "example": "12"
           },
           {
@@ -268,6 +274,7 @@
               "type": "string"
             },
             "description": "Category of notices",
+            "required": false,
             "example": "sell, lost-found, in-good-hands"
           },
           {
@@ -426,7 +433,7 @@
         }
       }
     },
-    "notices/own": {
+    "/notices/own": {
       "get": {
         "tags": ["Notices"],
         "summary": "Get own user notices",
@@ -475,7 +482,7 @@
         }
       }
     },
-    "notices/favorite": {
+    "/notices/favorite": {
       "get": {
         "tags": ["Notices"],
         "summary": "Get favorite notices",
@@ -534,7 +541,7 @@
         }
       }
     },
-    "notices/favorite/{noticeId}": {
+    "/notices/favorite/{noticeId}": {
       "patch": {
         "tags": ["Notices"],
         "summary": "Add notice to favorites",
@@ -745,6 +752,56 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NotFound"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/news": {
+      "get": {
+        "tags": ["News"],
+        "summary": "Get news list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Page number",
+            "example": "2",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Number of items per page",
+            "required": false,
+            "example": "12"
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search for notices by keyword",
+            "example": "About cats",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetNewsResponse"
                 }
               }
             }
@@ -1258,6 +1315,44 @@
             "type": "string",
             "description": "Pet's comment",
             "example": "Rich would be the perfect addition to an active family that loves to play and go on walks. I bet he would love having a doggy playmate too!"
+          }
+        }
+      },
+      "GetNewsResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "imgUrl": {
+              "type": "string",
+              "description": "Image URL",
+              "example": "https://www.nytimes.com/images/2023/04/16/magazine/16mag-LOR/16mag-LOR-blog480.jpg"
+            },
+            "title": {
+              "type": "string",
+              "description": "Title",
+              "example": "What I Learned Dogsitting for New York City’s Opulent Elite"
+            },
+            "text": {
+              "type": "string",
+              "description": "New's text",
+              "example": "In a city of yawning class inequality, some side hustles let you glimpse how the other half lives."
+            },
+            "date": {
+              "type": "string",
+              "description": "New's creation date",
+              "example": "I2023-04-11T09:00:18+0000"
+            },
+            "url": {
+              "type": "string",
+              "description": "New's URL",
+              "example": "https://www.nytimes.com/2023/04/11/magazine/dogsitting-rich-new-york.html"
+            },
+            "id": {
+              "type": "string",
+              "description": "Notice's ID",
+              "example": "nyt://article/8d29f1fc-d146-509d-8ceb-5a5b17d7886b"
+            }
           }
         }
       },
