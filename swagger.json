@@ -1323,7 +1323,7 @@
             "description": "Pet's birthday in format DD-MM-YYYY",
             "example": "15-05-2017"
           },
-          "type": {
+          "petType": {
             "type": "string",
             "description": "Pet's type (e.g., Persian cat, Basenji, Pomeranian, Pug)",
             "example": "Persian cat"

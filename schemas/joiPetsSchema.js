@@ -1,6 +1,6 @@
 const Joi = require("joi");
 
-const dateRegExp = /^\d{2}-\d{2}-\d{4}$/;
+const dateRegExp = /^\d{4}-\d{2}-\d{2}$/;
 
 const petSchema = Joi.object({
   name: Joi.string().required().messages({
