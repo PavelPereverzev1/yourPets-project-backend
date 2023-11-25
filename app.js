@@ -2,8 +2,14 @@ const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
 require("dotenv").config();
-const { swaggerRouter, authRouter,petRouter, userRouter, noticeRouter} = require("./routes");
-
+const {
+  swaggerRouter,
+  authRouter,
+  petRouter,
+  userRouter,
+  noticeRouter,
+  newsRouter,
+} = require("./routes");
 
 const app = express();
 
@@ -17,10 +23,10 @@ app.use(express.static("public"));
 app.use("/api-docs", swaggerRouter);
 
 app.use("/auth", authRouter);
-app.use("/users", userRouter)
+app.use("/users", userRouter);
 app.use("/pets", petRouter);
 app.use("/notices", noticeRouter);
-
+app.use("/news", newsRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });

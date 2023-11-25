@@ -11,9 +11,8 @@ const noticeFilter = async (query) => {
       .lean();
   }
   if (search) {
-    noticesList = noticesList.filter(
-      (item) => item.title.toLowerCase().includes(search.toLowerCase())
-      // ||item.comments.toLowerCase().includes(search.toLowerCase())
+    noticesList = noticesList.filter((item) =>
+      item.title.toLowerCase().includes(search.toLowerCase())
     );
   }
   noticesList = noticesList.map((notice) => {
