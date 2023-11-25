@@ -35,6 +35,10 @@
     {
       "name": "News",
       "description": "News endpoints"
+    },
+    {
+      "name": "Friends",
+      "description": "Friends endpoints"
     }
   ],
 
@@ -808,6 +812,25 @@
           }
         }
       }
+    },
+    "/friends": {
+      "get": {
+        "tags": ["Friends"],
+        "summary": "Get friends list",
+
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetFriendsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
 
@@ -1352,6 +1375,82 @@
               "type": "string",
               "description": "Notice's ID",
               "example": "nyt://article/8d29f1fc-d146-509d-8ceb-5a5b17d7886b"
+            }
+          }
+        }
+      },
+      "GetFriendsResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "Partner's Title",
+              "example": "Shelter for homeless animals 'Sirius'"
+            },
+            "url": {
+              "type": "string",
+              "description": "Partner's URL",
+              "example": "https://dogcat.com.ua"
+            },
+            "addressUrl": {
+              "type": "string",
+              "description": "Partner's address URL",
+              "example": "https://goo.gl/maps/iq8NXEUf31EAQCzc6"
+            },
+            "imageUrl": {
+              "type": "string",
+              "description": "Image URL",
+              "example": "https://storage.googleapis.com/kidslikev2_bucket/pets-support/images/sponsors/frame_287.png"
+            },
+            "address": {
+              "type": "string",
+              "description": "Partner's address",
+              "example": "Fedorivka, Kyiv Oblast, Ukraine, 07372"
+            },
+            "workDays": {
+              "type": "array",
+              "description": "The work days of the organization",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "isOpen": {
+                    "type": "boolean",
+                    "description": "Indicates if the organization is open on this day"
+                  },
+                  "from": {
+                    "type": "string",
+                    "description": "The opening time of the organization (e.g., '09:00')"
+                  },
+                  "to": {
+                    "type": "string",
+                    "description": "The closing time of the organization (e.g., '17:00')"
+                  }
+                },
+                "example": {
+                  "isOpen": false
+                }
+              },
+              "example": [
+                { "isOpen": true, "from": "09:00", "to": "20:00" },
+                { "isOpen": true, "from": "09:00", "to": "20:00" },
+                { "isOpen": true, "from": "09:00", "to": "20:00" },
+                { "isOpen": true, "from": "09:00", "to": "20:00" },
+                { "isOpen": true, "from": "09:00", "to": "20:00" },
+                { "isOpen": true, "from": "09:00", "to": "20:00" },
+                { "isOpen": true, "from": "09:00", "to": "20:00" }
+              ]
+            },
+            "phone": {
+              "type": "string",
+              "description": "Partner's text",
+              "example": "+380931934069"
+            },
+            "email": {
+              "type": "string",
+              "description": "Parnter's emai;",
+              "example": "dogcat.sirius.example@gmail.com"
             }
           }
         }

@@ -4,6 +4,7 @@ const petRouter = require("./petRoute");
 const userRouter = require("./users");
 const noticeRouter = require("./notices");
 const newsRouter = require("./news");
+const friendsRouter = require("./friends");
 
 module.exports = {
   swaggerRouter,
@@ -12,4 +13,5 @@ module.exports = {
   userRouter,
   noticeRouter,
   newsRouter,
+  friendsRouter,
 };

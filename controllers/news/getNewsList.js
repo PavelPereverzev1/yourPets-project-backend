@@ -1,4 +1,5 @@
 const News = require("../../models/news");
+const { ctrlWrapper } = require("../../helpers");
 
 const getNews = async (req, res) => {
   const { page = 1, limit = 6, search = "" } = req.query;
@@ -23,5 +24,5 @@ const getNews = async (req, res) => {
 };
 
 module.exports = {
-  getNews,
+  getNews: ctrlWrapper(getNews),
 };
