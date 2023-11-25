@@ -21,7 +21,7 @@ const petSchema = new Schema(
         message: "Invalid date format (dd-mm-yyyy)",
       },
     },
-    type: {
+    petType: {
       type: String,
       required: [true, "Type must be provided"],
     },

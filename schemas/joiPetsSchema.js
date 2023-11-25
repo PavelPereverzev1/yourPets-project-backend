@@ -7,7 +7,7 @@ const petSchema = Joi.object({
     "any.required": "Pet name must be provided",
   }),
   birthday: Joi.string().regex(dateRegExp).required().empty(false),
-  type: Joi.string().required().messages({
+  petType: Joi.string().required().messages({
     "any.required": "Type must be provided",
   }),
   comments: Joi.string().empty(""),
