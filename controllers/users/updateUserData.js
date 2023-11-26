@@ -1,11 +1,9 @@
-const updateUserData = async (req, res) => {
-  const { user } = req;
-  console.log(req.body);
-  Object.keys(req.body).forEach((key) => {
-    user[key] = req.body[key];
-  });
+const User = require("../../models/user");
 
-  await user.save();
+const updateUserData = async (req, res) => {
+  const { _id: userId } = req.user;
+
+  const user = await User.findByIdAndUpdate(userId, { ...req.body });
 
   res.status(200).json({
     user: {

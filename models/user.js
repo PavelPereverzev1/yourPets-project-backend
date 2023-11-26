@@ -45,7 +45,7 @@ const userSchema = new Schema(
     },
     favorites: {
       type: Array,
-      default: [{ type: Types.ObjectId, ref: "Noties" }],
+      default: [{ type: Types.ObjectId, ref: "Notices" }],
     },
   },
   { versionKey: false, timestamps: true }

@@ -1011,7 +1011,7 @@
             "description": "The URL to the user's avatar",
             "example": "www.gravatar.com/avatar/9f947d80dcde0d8bdc7c3bb66e82e6c7"
           },
-          "favourites": {
+          "favorites": {
             "type": "array",
             "items": {
               "type": "string",
@@ -1139,7 +1139,7 @@
           },
           "price": {
             "type": "integer",
-            "description": "Notice's price (Available only if type of notice equal sell)",
+            "description": "Notice's price (Available only if noticeType = sell)",
             "example": 12500
           },
           "comments": {
