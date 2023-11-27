@@ -48,10 +48,10 @@ const noticeSchema = new Schema(
       type: String,
       default: null,
     },
-    favorite: [{ type: Types.ObjectId, ref: "Users" }],
+    favorite: [{ type: Types.ObjectId, ref: "User" }],
     owner: {
       type: Types.ObjectId,
-      ref: "Users",
+      ref: "user",
       required: [true, "Pet must have an owner"],
     },
   },

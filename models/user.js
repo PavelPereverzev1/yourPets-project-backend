@@ -25,6 +25,7 @@ const userSchema = new Schema(
     phone: {
       type: String,
       default: "",
+      ref: "Notice",
     },
     city: {
       type: String,
