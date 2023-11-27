@@ -1,5 +1,4 @@
 const { Schema, model } = require("mongoose");
-const handleMongooseError = require("../helpers/handleMongooseError");
 
 const friendSchema = new Schema({
   title: String,
@@ -11,8 +10,6 @@ const friendSchema = new Schema({
   phone: String,
   email: String,
 });
-
-friendSchema.post("save", handleMongooseError);
 
 const Friend = model("Friend", friendSchema);
 

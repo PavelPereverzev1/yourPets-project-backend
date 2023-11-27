@@ -1,5 +1,4 @@
 const { Schema, Types, model } = require("mongoose");
-const handleMongooseError = require("../helpers/handleMongooseError");
 
 const emailRegExp = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -45,13 +44,11 @@ const userSchema = new Schema(
     },
     favorites: {
       type: Array,
-      default: [{ type: Types.ObjectId, ref: "Notices" }],
+      default: [{ type: Types.ObjectId }],
     },
   },
   { versionKey: false, timestamps: true }
 );
-
-userSchema.post("save", handleMongooseError);
 
 const User = model("user", userSchema);
 

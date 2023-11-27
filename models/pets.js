@@ -1,8 +1,6 @@
 const { Schema, model } = require("mongoose");
-const { handleMongooseError } = require("../helpers");
 const Joi = require("joi").extend(require("@joi/date"));
 
-// const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const validateDate = (value) => {
   const { error } = Joi.date().format("DD-MM-YYYY").validate(value);
   return !error;
@@ -42,8 +40,6 @@ const petSchema = new Schema(
   },
   { versionKey: false, timestamps: true }
 );
-
-petSchema.post("save", handleMongooseError);
 
 const Pet = model("pet", petSchema);
 
