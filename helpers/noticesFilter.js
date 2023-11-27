@@ -21,7 +21,7 @@ const noticeFilter = async (query) => {
       new Date(notice.birthday)
     );
     return {
-      id: notice._id,
+      _id: notice._id,
       noticeType: notice.noticeType,
       title: notice.title,
       sex: notice.sex,
