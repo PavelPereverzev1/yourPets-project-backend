@@ -9,6 +9,7 @@ const deleteOwnNotice = async (req, res) => {
   if (!result) {
     throw HttpError(404, "Not found");
   }
+
   await deleteFromCloudinary(result.photoId);
   for (const userId of result.favorite) {
     await User.findByIdAndUpdate(userId, {

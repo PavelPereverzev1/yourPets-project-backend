@@ -3,6 +3,7 @@ const ctrlWrapper = require("./ctrlWrapper");
 const generateJWT = require("./generateJWT.js");
 const noticeFilter = require("./noticesFilter.js");
 const { uploadCloudinary, deleteFromCloudinary } = require("./cloudinary");
+const favoriteFilter = require("./favoriteFilter.js");
 
 module.exports = {
   HttpError,
@@ -11,4 +12,5 @@ module.exports = {
   noticeFilter,
   uploadCloudinary,
   deleteFromCloudinary,
+  favoriteFilter,
 };

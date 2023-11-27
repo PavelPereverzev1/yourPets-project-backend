@@ -1,16 +1,12 @@
 const Notice = require("../../models/notice.js");
+const { favoriteFilter } = require("../../helpers");
 
 const getOwnNotices = async (req, res) => {
-  const { page = 1, limit = 12, search = "" } = req.query;
   const { _id: owner } = req.user;
 
   const result = await Notice.find({ owner }, "-createdAt -updatedAt");
 
-  const searchResult = result.filter((item) =>
-    item.title.toLowerCase().includes(search.trim().toLowerCase())
-  );
-  const skip = (page - 1) * limit;
-  const resultPage = searchResult.slice(skip, skip + limit);
+  const resultPage = favoriteFilter(req.query, result);
 
   res.status(200).json({
     data: resultPage,
