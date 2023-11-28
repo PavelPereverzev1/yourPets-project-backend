@@ -1,3 +1,3 @@
-const CATEGORIES = ["sell", "lost-found", "in-good-hands"];
+const CATEGORIES = ["sell", "lost/found", "in good hands"];
 
-module.exports = CATEGORIES
+module.exports = CATEGORIES;
